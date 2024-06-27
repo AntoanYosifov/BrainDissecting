@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: BrainDissecting
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/brain_dissecting?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC
+    username: root
+    password: ${DB_PASSWORD:password}
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: true
+    include-stacktrace: always
+
