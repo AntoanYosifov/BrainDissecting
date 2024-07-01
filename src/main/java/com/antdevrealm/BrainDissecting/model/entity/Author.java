@@ -1,5 +1,6 @@
 package com.antdevrealm.BrainDissecting.model.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
@@ -8,15 +9,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "categories")
-public class Category extends BaseEntity {
-    // Consider making the name an Enum and unique
+@Table(name = "authors")
+public class Author extends BaseEntity{
+    @Column(nullable = false)
     private String name;
-    // Consider adding description field later
-    @ManyToMany(mappedBy = "categories")
+    private String affiliation;
+    @ManyToMany(mappedBy = "authors")
     private Set<Article> articles;
 
-    public Category() {
+    public Author() {
         this.articles = new HashSet<>();
     }
 
@@ -24,18 +25,25 @@ public class Category extends BaseEntity {
         return name;
     }
 
-    public Category setName(String name) {
+    public Author setName(String name) {
         this.name = name;
         return this;
     }
 
-    // Consider making the return method immutable and adding a methods to add and remove articles
+    public String getAffiliation() {
+        return affiliation;
+    }
+
+    public Author setAffiliation(String affiliation) {
+        this.affiliation = affiliation;
+        return this;
+    }
 
     public Set<Article> getArticles() {
         return articles;
     }
 
-    public Category setArticles(Set<Article> articles) {
+    public Author setArticles(Set<Article> articles) {
         this.articles = articles;
         return this;
     }

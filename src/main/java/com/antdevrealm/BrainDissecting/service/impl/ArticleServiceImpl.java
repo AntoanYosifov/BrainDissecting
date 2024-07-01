@@ -19,25 +19,35 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public List<ArticleInfoDTO> getAll() {
-        return articleRepository.findAll()
-                .stream()
-                .map(ArticleServiceImpl::mapArticleToDTO)
-                .toList();
+        return null;
     }
 
     @Override
     public Optional<ArticleInfoDTO> findById(Long id) {
-        return articleRepository.findById(id).map(ArticleServiceImpl::mapArticleToDTO);
+        return Optional.empty();
     }
 
-    private static ArticleInfoDTO mapArticleToDTO(Article article){
-        return new ArticleInfoDTO()
-                .setId(article.getId())
-                .setAuthor(article.getAuthor())
-                .setContent(article.getContent())
-                .setTitle(article.getTitle())
-                .setPublishedOn(article.getPublishedOn());
-    }
+//    @Override
+//    public List<ArticleInfoDTO> getAll() {
+//        return articleRepository.findAll()
+//                .stream()
+//                .map(ArticleServiceImpl::mapArticleToDTO)
+//                .toList();
+//    }
+
+//    @Override
+//    public Optional<ArticleInfoDTO> findById(Long id) {
+//        return articleRepository.findById(id).map(ArticleServiceImpl::mapArticleToDTO);
+//    }
+
+//    private static ArticleInfoDTO mapArticleToDTO(Article article){
+//        return new ArticleInfoDTO()
+//                .setId(article.getId())
+//                .setAuthor(article.getAuthor())
+//                .setContent(article.getAbstractText())
+//                .setTitle(article.getTitle())
+//                .setPublishedOn(article.getPublishedOn());
+//    }
 
 
 }

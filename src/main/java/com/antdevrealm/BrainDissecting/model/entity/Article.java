@@ -1,39 +1,92 @@
 package com.antdevrealm.BrainDissecting.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "articles")
-public class Article extends BaseEntity{
+public class Article extends BaseEntity {
     @Column(nullable = false)
     private String title;
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String content;
-    @Column(nullable = false)
-    private String author;
-    // Consider adding image field later
-    @ManyToOne(optional = false)
-    private Category category;
+    private String abstractText;
     @Column(nullable = false)
     private LocalDate publishedOn;
+    @Column(nullable = false)
+    private String journal;
+    private String volume;
+    @Column(nullable = false)
+    private String link;
 
-    public Article() {
+    public String getJournal() {
+        return journal;
     }
 
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public Article setAuthor(String author) {
-        this.author = author;
+    public Article setJournal(String journal) {
+        this.journal = journal;
         return this;
     }
+
+    public String getVolume() {
+        return volume;
+    }
+
+    public Article setVolume(String volume) {
+        this.volume = volume;
+        return this;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public Article setLink(String link) {
+        this.link = link;
+        return this;
+    }
+
+    public Set<Author> getAuthors() {
+        return authors;
+    }
+
+    public Article setAuthors(Set<Author> authors) {
+        this.authors = authors;
+        return this;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public Article setCategories(Set<Category> categories) {
+        this.categories = categories;
+        return this;
+    }
+
+    @ManyToMany
+    @JoinTable(
+            name = "article_authors",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id")
+    )
+    private Set<Author> authors;
+    // Consider adding image field later
+    @ManyToMany
+    @JoinTable(
+            name = "article_categories",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
+
+    public Article() {
+        this.authors = new HashSet<>();
+        this.categories = new HashSet<>();
+    }
+
 
     public LocalDate getPublishedOn() {
         return publishedOn;
@@ -53,21 +106,14 @@ public class Article extends BaseEntity{
         return this;
     }
 
-    public String getContent() {
-        return content;
+    public String getAbstractText() {
+        return abstractText;
     }
 
-    public Article setContent(String content) {
-        this.content = content;
+    public Article setAbstractText(String content) {
+        this.abstractText = content;
         return this;
     }
 
-    public Category getCategory() {
-        return category;
-    }
 
-    public Article setCategory(Category category) {
-        this.category = category;
-        return this;
-    }
 }
