@@ -3,7 +3,9 @@ package com.antdevrealm.BrainDissecting.model.entity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -11,31 +13,103 @@ import java.util.Set;
 public class Article extends BaseEntity {
     @Column(nullable = false)
     private String title;
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(name = "abstract_text",nullable = false, columnDefinition = "TEXT")
     private String abstractText;
-    @Column(nullable = false)
-    private LocalDate publishedOn;
-    @Column(nullable = false)
-    private String journal;
-    private String volume;
+    @Column(name = "publication_date",nullable = false)
+    private LocalDate publicationDate;
+    @Column(name = "journal_title", nullable = false)
+    public String journalTitle;
+    @Column(name = "journal_publisher", nullable = false)
+    private String journalPublisher;
+    @Column(name = "journal_volume", nullable = false)
+    private String journalVolume;
+    @ElementCollection
+    private List<String> authors;
+    @ElementCollection
+    private List<String> keywords;
     @Column(nullable = false)
     private String link;
+    @ManyToMany
+    @JoinTable(name = "articles_categories",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
-    public String getJournal() {
-        return journal;
+    public Article() {
+        this.authors = new ArrayList<>();
+        this.keywords = new ArrayList<>();
+        this.categories = new HashSet<>();
     }
 
-    public Article setJournal(String journal) {
-        this.journal = journal;
+    public String getTitle() {
+        return title;
+    }
+
+    public Article setTitle(String text) {
+        this.title = text;
         return this;
     }
 
-    public String getVolume() {
-        return volume;
+    public String getAbstractText() {
+        return abstractText;
     }
 
-    public Article setVolume(String volume) {
-        this.volume = volume;
+    public Article setAbstractText(String abstractText) {
+        this.abstractText = abstractText;
+        return this;
+    }
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public Article setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+        return this;
+    }
+
+    public String getJournalTitle() {
+        return journalTitle;
+    }
+
+    public Article setJournalTitle(String journalTitle) {
+        this.journalTitle = journalTitle;
+        return this;
+    }
+
+    public String getJournalPublisher() {
+        return journalPublisher;
+    }
+
+    public Article setJournalPublisher(String journalPublisher) {
+        this.journalPublisher = journalPublisher;
+        return this;
+    }
+
+    public String getJournalVolume() {
+        return journalVolume;
+    }
+
+    public Article setJournalVolume(String journalVolume) {
+        this.journalVolume = journalVolume;
+        return this;
+    }
+
+    public List<String> getAuthors() {
+        return authors;
+    }
+
+    public Article setAuthors(List<String> authors) {
+        this.authors = authors;
+        return this;
+    }
+
+    public List<String> getKeywords() {
+        return keywords;
+    }
+
+    public Article setKeywords(List<String> keywords) {
+        this.keywords = keywords;
         return this;
     }
 
@@ -47,73 +121,4 @@ public class Article extends BaseEntity {
         this.link = link;
         return this;
     }
-
-    public Set<Author> getAuthors() {
-        return authors;
-    }
-
-    public Article setAuthors(Set<Author> authors) {
-        this.authors = authors;
-        return this;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public Article setCategories(Set<Category> categories) {
-        this.categories = categories;
-        return this;
-    }
-
-    @ManyToMany
-    @JoinTable(
-            name = "article_authors",
-            joinColumns = @JoinColumn(name = "article_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id")
-    )
-    private Set<Author> authors;
-    // Consider adding image field later
-    @ManyToMany
-    @JoinTable(
-            name = "article_categories",
-            joinColumns = @JoinColumn(name = "article_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
-    private Set<Category> categories;
-
-    public Article() {
-        this.authors = new HashSet<>();
-        this.categories = new HashSet<>();
-    }
-
-
-    public LocalDate getPublishedOn() {
-        return publishedOn;
-    }
-
-    public Article setPublishedOn(LocalDate publishedOn) {
-        this.publishedOn = publishedOn;
-        return this;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public Article setTitle(String title) {
-        this.title = title;
-        return this;
-    }
-
-    public String getAbstractText() {
-        return abstractText;
-    }
-
-    public Article setAbstractText(String content) {
-        this.abstractText = content;
-        return this;
-    }
-
-
 }
