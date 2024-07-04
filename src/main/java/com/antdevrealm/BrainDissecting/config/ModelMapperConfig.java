@@ -21,28 +21,28 @@ public class ModelMapperConfig {
         Condition<?, ?> notNull = context -> context.getSource() != null;
 
         modelMapper.typeMap(ArticleDTO.class, Article.class).addMappings(mapper -> {
-            mapper.when(notNull).map(src -> src.getBibJson().getTitle(), Article::setTitle);
-            mapper.when(notNull).map(src -> src.getBibJson().getAbstractText(), Article::setAbstractText);
+            mapper.when(notNull).map(src -> src.getBibjson().getTitle(), Article::setTitle);
+            mapper.when(notNull).map(src -> src.getBibjson().getAbstractText(), Article::setAbstractText);
             mapper.map(src -> {
-                String year = src.getBibJson().getYear();
-                String month = src.getBibJson().getMonth();
+                String year = src.getBibjson().getYear();
+                String month = src.getBibjson().getMonth();
                 return (year != null && month != null) ? LocalDate.of(Integer.parseInt(year), Integer.parseInt(month), 1) : null;
             }, Article::setPublicationDate);
-            mapper.when(notNull).map(src -> src.getBibJson().getJournal().getTitle(), Article::setJournalTitle);
-            mapper.when(notNull).map(src -> src.getBibJson().getJournal().getPublisher(), Article::setJournalPublisher);
-            mapper.when(notNull).map(src -> src.getBibJson().getJournal().getVolume(), Article::setJournalVolume);
+            mapper.when(notNull).map(src -> src.getBibjson().getJournal().getTitle(), Article::setJournalTitle);
+            mapper.when(notNull).map(src -> src.getBibjson().getJournal().getPublisher(), Article::setJournalPublisher);
+            mapper.when(notNull).map(src -> src.getBibjson().getJournal().getVolume(), Article::setJournalVolume);
             mapper.when(notNull).map(src -> {
-                if (src.getBibJson().getAuthor() != null) {
-                    return src.getBibJson().getAuthor().stream().map(AuthorDTO::getName).collect(Collectors.toList());
+                if (src.getBibjson().getAuthor() != null) {
+                    return src.getBibjson().getAuthor().stream().map(AuthorDTO::getName).collect(Collectors.toList());
                 } else {
                     return Collections.emptyList();
                 }
             }, Article::setAuthors);
-            mapper.when(notNull).map(src -> src.getBibJson().getKeywords(), Article::setKeywords);
-            mapper.when(notNull).map(src -> src.getBibJson().getKeywords(), Article::setKeywords);
+            mapper.when(notNull).map(src -> src.getBibjson().getKeywords(), Article::setKeywords);
+            mapper.when(notNull).map(src -> src.getBibjson().getKeywords(), Article::setKeywords);
             mapper.when(notNull).map(src -> {
-                if (src.getBibJson().getLink() != null && !src.getBibJson().getLink().isEmpty()) {
-                    return src.getBibJson().getLink().get(0).getUrl();
+                if (src.getBibjson().getLink() != null && !src.getBibjson().getLink().isEmpty()) {
+                    return src.getBibjson().getLink().get(0).getUrl();
                 } else {
                     return null;
                 }

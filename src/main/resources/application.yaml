@@ -17,4 +17,9 @@ server:
     whitelabel:
       enabled: true
     include-stacktrace: always
+# https://doaj.org/article/0001d38c946a4231bae36435429a0853
+doaj:
+  api:
+    url: "https://doaj.org/api/articles/0001d38c946a4231bae36435429a0853"
+
 

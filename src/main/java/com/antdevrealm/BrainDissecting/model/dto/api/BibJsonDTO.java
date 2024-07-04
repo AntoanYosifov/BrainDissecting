@@ -1,6 +1,7 @@
 package com.antdevrealm.BrainDissecting.model.dto.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,6 +11,7 @@ public class BibJsonDTO {
     private String title;
     private String year;
     private String month;
+    @JsonProperty("abstract")
     private String abstractText;
     private JournalDTO journal;
     private List<AuthorDTO> author;
