@@ -4,26 +4,18 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ArticleDTO {
-    private String id;
     @JsonProperty("bibjson")
     private BibJsonDTO bibjson;
 
 
-    public BibJsonDTO getBibjson() {
+    public BibJsonDTO getBibJson() {
         return bibjson;
     }
 
-    public ArticleDTO setBibjson(BibJsonDTO bibjson) {
+    public ArticleDTO setBibJson(BibJsonDTO bibjson) {
         this.bibjson = bibjson;
         return this;
     }
 
-    public String getId() {
-        return id;
-    }
 
-    public ArticleDTO setId(String id) {
-        this.id = id;
-        return this;
-    }
 }
