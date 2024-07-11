@@ -22,16 +22,18 @@ public class ArticleServiceImpl implements ArticleService {
     private final RestClient restClient;
     private final ArticleRepository articleRepository;
     private final DoajApiConfig doajApiConfig;
+    private final ModelMapper modelMapper;
 
 
     public ArticleServiceImpl(
             RestClient restClient,
             ArticleRepository articleRepository,
-            DoajApiConfig doajApiConfig) {
+            DoajApiConfig doajApiConfig, ModelMapper modelMapper) {
 
         this.restClient = restClient;
         this.articleRepository = articleRepository;
         this.doajApiConfig = doajApiConfig;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -41,7 +43,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Optional<ArticleInfoDTO> findById(Long id) {
-        return Optional.empty();
+        Optional<Article> byId = articleRepository.findById(id);
+
+        return byId.map(article -> modelMapper.map(article, ArticleInfoDTO.class));
+
     }
 
     @Override

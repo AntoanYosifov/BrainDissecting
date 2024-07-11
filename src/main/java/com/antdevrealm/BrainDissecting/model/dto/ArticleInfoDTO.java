@@ -1,13 +1,10 @@
 package com.antdevrealm.BrainDissecting.model.dto;
 
-import java.time.LocalDate;
 
 public class ArticleInfoDTO {
     private Long id;
     private String title;
-    private String content;
-    private String author;
-    private LocalDate publishedOn;
+    private String abstractText;
 
     public ArticleInfoDTO() {
     }
@@ -30,30 +27,13 @@ public class ArticleInfoDTO {
         return this;
     }
 
-    public String getContent() {
-        return content;
+    public String getAbstractText() {
+        return abstractText;
     }
 
-    public ArticleInfoDTO setContent(String content) {
-        this.content = content;
+    public ArticleInfoDTO setAbstractText(String abstractText) {
+        this.abstractText = abstractText;
         return this;
     }
 
-    public String getAuthor() {
-        return author;
-    }
-
-    public ArticleInfoDTO setAuthor(String author) {
-        this.author = author;
-        return this;
-    }
-
-    public LocalDate getPublishedOn() {
-        return publishedOn;
-    }
-
-    public ArticleInfoDTO setPublishedOn(LocalDate publishedOn) {
-        this.publishedOn = publishedOn;
-        return this;
-    }
 }
