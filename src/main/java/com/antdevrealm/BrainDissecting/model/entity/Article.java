@@ -15,7 +15,7 @@ public class Article extends BaseEntity {
     private String title;
     @Column(name = "abstract_text",nullable = false, columnDefinition = "TEXT")
     private String abstractText;
-    @Column(name = "publication_date",nullable = false)
+    @Column(name = "publication_date")
     private LocalDate publicationDate;
     @Column(name = "journal_title", nullable = false)
     public String journalTitle;

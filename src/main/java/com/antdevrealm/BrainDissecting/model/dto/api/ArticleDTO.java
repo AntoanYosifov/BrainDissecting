@@ -1,5 +1,6 @@
 package com.antdevrealm.BrainDissecting.model.dto.api;
 
+import com.antdevrealm.BrainDissecting.model.dto.api.properties.BibJsonDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)

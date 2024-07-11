@@ -1,4 +1,4 @@
-package com.antdevrealm.BrainDissecting.model.dto.api;
+package com.antdevrealm.BrainDissecting.model.dto.api.properties;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

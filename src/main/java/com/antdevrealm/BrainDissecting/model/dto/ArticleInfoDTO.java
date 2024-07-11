@@ -6,6 +6,8 @@ public class ArticleInfoDTO {
     private String title;
     private String abstractText;
 
+    private String journalTitle;
+
     public ArticleInfoDTO() {
     }
 
@@ -36,4 +38,12 @@ public class ArticleInfoDTO {
         return this;
     }
 
+    public String getJournalTitle() {
+        return journalTitle;
+    }
+
+    public ArticleInfoDTO setJournalTitle(String journalTitle) {
+        this.journalTitle = journalTitle;
+        return this;
+    }
 }
