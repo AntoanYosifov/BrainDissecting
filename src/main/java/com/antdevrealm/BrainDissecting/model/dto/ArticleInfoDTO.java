@@ -5,8 +5,8 @@ public class ArticleInfoDTO {
     private Long id;
     private String title;
     private String abstractText;
-
     private String journalTitle;
+    private String link;
 
     public ArticleInfoDTO() {
     }
@@ -44,6 +44,15 @@ public class ArticleInfoDTO {
 
     public ArticleInfoDTO setJournalTitle(String journalTitle) {
         this.journalTitle = journalTitle;
+        return this;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public ArticleInfoDTO setLink(String link) {
+        this.link = link;
         return this;
     }
 }

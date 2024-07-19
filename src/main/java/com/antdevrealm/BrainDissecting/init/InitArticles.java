@@ -15,9 +15,8 @@ public class InitArticles implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        MultipleArticlesResponseDTO multipleArticlesResponseDTO = articleService.fetchMultipleArticles();
-
+//        MultipleArticlesResponseDTO multipleArticlesResponseDTO = articleService.fetchMultipleArticles();
 //        Optional<ArticleInfoDTO> articleInfoDTO = articleService.findById(1L);
-       System.out.println();
+//        System.out.println();
     }
 }

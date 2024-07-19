@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,6 +42,19 @@ public class ArticleServiceImpl implements ArticleService {
     public List<ArticleInfoDTO> getAll() {
         return null;
     }
+
+    @Override
+    public List<ArticleInfoDTO> getTop9Articles() {
+        List<Article> top5Articles = this.articleRepository.findTop9Articles();
+
+        if (top5Articles.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        return top5Articles.stream().map(a -> modelMapper.map(a, ArticleInfoDTO.class)).toList();
+
+    }
+
 
     @Override
     public Optional<ArticleInfoDTO> findById(Long id) {

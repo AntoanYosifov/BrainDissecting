@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface ArticleService {
     List<ArticleInfoDTO> getAll();
 
+    List<ArticleInfoDTO> getTop9Articles();
+
     Optional<ArticleInfoDTO> findById(Long id);
 
     ArticleDTO fetchArticle();
