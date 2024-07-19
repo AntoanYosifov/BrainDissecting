@@ -14,6 +14,10 @@ public class User extends BaseEntity   {
     private String password;
     @Column(nullable = false)
     private String email;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     @ManyToOne(optional = false, targetEntity = Role.class)
     private Role role;
 
@@ -47,6 +51,23 @@ public class User extends BaseEntity   {
         return this;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public User setFirstName(String firstName) {
+        this.firstName = firstName;
+        return this;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
+        return this;
+    }
 
     public Role getRole() {
         return role;

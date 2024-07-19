@@ -31,7 +31,7 @@ public class ArticleRestController {
     }
     // handle getting empty List from your articleService
     @GetMapping("/top")
-    public ResponseEntity<List<ArticleInfoDTO>> getTop5Articles() {
+    public ResponseEntity<List<ArticleInfoDTO>> getTop9Articles() {
         return ResponseEntity.ok(articleService.getTop9Articles());
     }
 
